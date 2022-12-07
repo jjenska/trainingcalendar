@@ -6,6 +6,7 @@ import SportsGymnasticsIcon from '@mui/icons-material/SportsGymnastics';
 function App() {
   
   return (
+
     <div>
       <AppBar position="static" sx={{background: '#063970'}}>
         <Toolbar>
@@ -16,8 +17,8 @@ function App() {
         </Toolbar>
       </AppBar>
       <TabApp />
-
     </div>
+    
   );
 }
 

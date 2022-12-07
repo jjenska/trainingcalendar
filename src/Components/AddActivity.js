@@ -5,20 +5,20 @@ import AddIcon from '@mui/icons-material/Add';
 function AddActivity(props) {
     const [open, setOpen] = useState(false);
     const [customer, setCustomer] = useState({
-        firstname:'',
-        lastname:'',
-        email:'',
-        phone:'',
-        streetaddress:'',
-        postcode:'',
-        city:'',
+        firstname: "",
+        lastname: "",
+        email: "",
+        phone: "",
+        streetaddress: "",
+        postcode: "",
+        city: "",
     });
 
     const [training, setTraining] = useState({
-        date: '',
-        duration: '',
-        activity: '',
-        customer: '',
+        date: "",
+        duration: "",
+        activity: "",
+        customer: "",
     });
 
     const handleOpen = () => {
@@ -56,11 +56,11 @@ function AddActivity(props) {
     };
 
     const availableActivities = [
-        { value: 'Spinning', label: 'Spinning' },
-        { value: 'Gym training', label: 'Gym training' },
-        { value: 'Fitness', label: 'Fitness' },
-        { value: 'Zumba', label: 'Zumba' },
-        { value: 'Jogging', label: 'Jogging' },
+        { value: "Spinning", label: "Spinning" },
+        { value: "Gym training", label: "Gym training" },
+        { value: "Fitness", label: "Fitness" },
+        { value: "Zumba", label: "Zumba" },
+        { value: "Jogging", label: "Jogging" },
     ];
 
     return (

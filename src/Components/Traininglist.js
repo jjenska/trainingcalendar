@@ -26,7 +26,8 @@ function Traininglist() {
     };
 
     const deleteTraining = (id) => {
-        fetch("https://customerrest.herokuapp.com/api/trainings/" + id, { method: 'DELETE'})
+        if(window.confirm("Are you sure you want to delete selected activity?"))
+        fetch("https://customerrest.herokuapp.com/api/trainings/" + id, { method: "DELETE"})
         .then((response) => {
             if (response.ok) {
                 fetchTrainings();
@@ -42,7 +43,7 @@ function Traininglist() {
     const columns = [
         { 
             headerName: "Delete",
-            field: 'id',  
+            field: "id",  
             width: 90,
             cellRenderer: (params) => (
                 <IconButton color="error" onClick={() => deleteTraining(params.value)}>
@@ -51,6 +52,7 @@ function Traininglist() {
             ),
         },
         { 
+            headerName: "Date and time",
             field: "date", 
             sortable: true, 
             filter: true,
@@ -59,7 +61,7 @@ function Traininglist() {
                 return moment(date.value).format("LLL");
             },
         },
-        { headerName:'Duration (min)', field: "duration", sortable: true, filter: true, width: 160 },
+        { headerName:"Duration (min)", field: "duration", sortable: true, filter: true, width: 160 },
         { field: "activity", sortable: true, filter: true, width: 140 },
         {
             headerName: "Customer",
@@ -79,12 +81,12 @@ function Traininglist() {
                         columnDefs={columns}
                         pagination={true}
                         paginationPageSize={10}
-                        suppressCellSelection={true}
+                        suppressCellFocus={true}
                     />
                 </div>
                 <Snackbar
                     open={open}
-                    autoHideDuration={2500}
+                    autoHideDuration={3000}
                     onClose={() => setOpen(false)}
                     message={message}
                     >

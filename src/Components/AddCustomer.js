@@ -10,13 +10,13 @@ import DialogContentText from '@mui/material/DialogContentText';
 function AddCustomer (props) {
     const [open, setOpen] = useState(false);
     const [customer, setCustomer] = useState({
-        firstname:'',
-        lastname:'',
-        email:'',
-        phone:'',
-        streetaddress:'',
-        postcode:'',
-        city:'',
+        firstname: "",
+        lastname: "",
+        email: "",
+        phone: "",
+        streetaddress: "",
+        postcode: "",
+        city: "",
     });
 
     const handleOpen = () => {
@@ -46,7 +46,7 @@ function AddCustomer (props) {
             <Dialog onClose={handleClose} open={open}>
                 <DialogTitle>New Customer</DialogTitle>
                 <DialogContent>
-                    <DialogContentText sx={{color: '#063970'}}>
+                    <DialogContentText sx={{color: "#063970"}}>
                         Please fill in the form to add a new customer.
                     </DialogContentText>
                     <TextField

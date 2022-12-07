@@ -7,6 +7,7 @@ import { IconButton, Snackbar } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditCustomer from './EditCustomer';
 import AddActivity from './AddActivity';
+import { CSVLink } from 'react-csv';
 
 function CustomerList() {
 
@@ -45,7 +46,8 @@ function CustomerList() {
 
   const deleteCustomer = (link) => {
     console.log(link);
-    fetch(link, { method: 'DELETE'})
+    if(window.confirm("Are you sure you want to delete selected customer?"))
+    fetch(link, { method: "DELETE"})
         .then((response) => {
             if (response.ok) {
                 fetchCustomers();
@@ -61,8 +63,8 @@ function CustomerList() {
     const editCustomer = (link, editedCustomer) => {
         console.log(link);
         fetch(link, { 
-            method: 'PUT',
-            headers: {'Content-Type' : 'application/json'},
+            method: "PUT",
+            headers: {"Content-Type" : "application/json"},
             body: JSON.stringify(editedCustomer)
         })
             .then((response) => {
@@ -79,8 +81,8 @@ function CustomerList() {
 
         const addActivity = (link) => {
             fetch("https://customerrest.herokuapp.com/api/trainings", {
-                method: 'POST',
-                headers: { 'Content-type': 'application/json'},
+                method: "POST",
+                headers: { "Content-type": "application/json"},
                 body: JSON.stringify(link)
             })
                 .then((response) => {
@@ -122,6 +124,7 @@ function CustomerList() {
                 <AddActivity addActivity={addActivity} params={params} />
             ),
         },
+        
         { field: "firstname", sortable: true, filter: true, width: 130 },
         { field: "lastname", sortable: true, filter: true, width: 130 },
         { field: "email", sortable: true, filter: true, width: 180 },
@@ -131,11 +134,27 @@ function CustomerList() {
         { field: "city", sortable: true, filter: true, width: 120 },
     ];
 
+    const headers = [
+        { label: "Firstname", key: "firstname" },
+        { label: "Lastname", key: "lastname"},
+        { label: "Email", key: "email"},
+        { label: "Phone", key: "phone"},
+        { label: "Streetaddress", key: "streetaddress"},
+        { label: "Postcode", key: "postcode"},
+        { label: "City", key: "city"},
+    ];
+
+    const csvFile = {
+        filename: "PTCustomers.csv",
+        headers: headers,
+        data: customers,
+    };
+
     return (
         <div >
             <AddCustomer addCustomer={addCustomer} />
             <div style={{ height: "100%", boxSizing: "border-box" }}>
-                <div style={{ height: 600, width: '100%' }} className="ag-theme-material">
+                <div style={{ height: 600, width: "100%" }} className="ag-theme-material">
                     <AgGridReact
                         rowData={customers}
                         columnDefs={columns}
@@ -145,11 +164,12 @@ function CustomerList() {
                 </div>
                 <Snackbar
                     open={open}
-                    autoHideDuration={2500}
+                    autoHideDuration={3000}
                     onClose={() => setOpen(false)}
                     message={message}
                     >
                 </Snackbar>
+                <CSVLink style={{ textDecoration: "none" }} {...csvFile}>Export customers to CSV</CSVLink>
             </div>
         </div>
     )

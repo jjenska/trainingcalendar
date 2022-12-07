@@ -6,13 +6,13 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit';
 function EditCustomer(props) {
     const [open, setOpen] = useState(false);
     const [customer, setCustomer] = useState({
-        firstname:'',
-        lastname:'',
-        email:'',
-        phone:'',
-        streetaddress:'',
-        postcode:'',
-        city:'',
+        firstname: "",
+        lastname: "",
+        email: "",
+        phone: "",
+        streetaddress: "",
+        postcode: "",
+        city: "",
     });
 
     const handleOpen = () => {
@@ -30,7 +30,7 @@ function EditCustomer(props) {
     }
 
     const handleClose = () => {
-        console.log("in calcel function")
+        console.log("in cancel function")
         setOpen(false)
     }
 
